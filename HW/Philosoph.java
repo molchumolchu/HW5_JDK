@@ -47,12 +47,16 @@ public class Philosoph implements Runnable {
             e.printStackTrace();
         }
         
-        while (countEat<=3) {
+        while (countEat<3) {
             eat();
             think();
         }
+        if (countEat==3) {
+            eat();
+            // think();
+        }
         System.out.println("Филосов "+ this.num + " наелся до отвала и будет размышлять");
-        think();
+        // think();
 
     }
 
@@ -73,8 +77,8 @@ public class Philosoph implements Runnable {
         try {
             if (checkForks()==true) {
                 getForks();
-                System.out.println("Филосов " + this.num +" приступил к еде " + countEat +" раз");
                 go();
+                System.out.println("Филосов " + this.num +" приступил к еде " + countEat +" раз");
                 Thread.sleep(new Random().nextInt(2000,5000));
                 eatSignal.countDown();
                 countEat++;
@@ -108,9 +112,9 @@ public class Philosoph implements Runnable {
     // берем вилку
     public void getForks(){
         if(num==1){
-            forks[num-1]=false;
+            forks[0]=false;
             forks[4]=false;
-            System.out.println("Заняты Вилка " + (num-1) +" и "+"вилка " +(4) +" Философом "+num);
+            System.out.println("Заняты Вилка " + (0) +" и "+"вилка " +(4) +" Философом "+num);
         }
         if(num!=1){
             forks[num-1]=false;
@@ -124,9 +128,9 @@ public class Philosoph implements Runnable {
     // кладем вилку
     public void putForks(){
         if(num==1){
-            forks[num-1]=true;
+            forks[0]=true;
             forks[4]=true;
-            System.out.println("Освободились Вилка " + (num-1) +" и "+"вилка " +(4) +" Философом "+num);
+            System.out.println("Освободились Вилка " + (0) +" и "+"вилка " +(4) +" Философом "+num);
         }
         if(num!=1){
             forks[num-1]=true;
